@@ -1,0 +1,21 @@
+<div class="p-grid p-justify-center">
+    <div class="p-col-12">
+        <p style="color:grey">Suggested Artists</p>
+        <ng-container *ngFor="let A of relatedArtists;index as i">
+            <div class="p-grid p-justify-center">
+                <div style="width:60px;margin-top:15px">
+                    <a href="{{A.external_urls.spotify}}" target="_blank"><img src="{{getImageUrl(A.images)}}" class="suggested-img "/></a>
+                </div>
+                <div class="p-col-9">
+                    <p style="font-weight: bolder;">{{A.name}} <i class="fas fa-info-circle" pTooltip="{{A.genres}}"></i> </p>
+                    <p-toggleButton [(ngModel)]="checked[i]" onLabel="Unfollow" offLabel="Follow" (onChange)="handleFollowButton(A.id,checked[i])"></p-toggleButton>
+                    
+        
+                </div>
+            </div>
+        </ng-container>
+        
+        <button pButton type="button" label="Refresh" class="ui-button-rounded" style="margin-top:10px" (onChange)="handleChange($event)"></button>
+        
+    </div>
+</div>

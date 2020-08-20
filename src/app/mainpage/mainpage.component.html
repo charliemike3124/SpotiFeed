@@ -1,0 +1,48 @@
+
+<div class="p-grid p-justify-center"> 
+    <div class="p-lg-9 p-md-11 p-col-12">
+        <div class="p-grid topgrid">
+            <div class="p-col-10 p-md-9 p-lg-7 p-lg-offset-1 block"> 
+                <div class="p-grid p-justify-center">
+                    <div class="p-lg-4 p-col-12">
+                        <i class="fas fa-music"  pTooltip="Filter by followed artists" style="margin-bottom: 5px;"></i><br>
+                        <p-multiSelect   pTooltip="Filter by Artist" [options]="followedArtistsOptions" [(ngModel)]="pickedFollowedArtist" (onChange)="applyFilters()"></p-multiSelect>                
+                    </div>
+                    <div class="p-lg-4 p-col-12">
+                        <i class="far fa-calendar-alt"  pTooltip="Filter by date" style="margin-bottom: 5px;"></i><br>
+                        <p-dropdown  pTooltip="Filter by Date" [options]="dateRangeOptions" [(ngModel)]="pickedDateRange" (onChange)="applyFilters()"></p-dropdown>
+                    </div>      
+                    <div class="p-lg-4 p-col-12">
+                        <i class="fas fa-user-alt"  pTooltip="Followed Artists" style="margin-bottom: 15px;"></i> <br>
+                        <span >You follow <span style="font-weight: bolder;">{{followedArtistsOptions.length}}</span> artists.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="p-grid p-justify-center">
+            <div class="p-lg-8 p-md-10">
+                <div style="text-align: center;">
+                    <p-progressSpinner *ngIf="loading"></p-progressSpinner> 
+                </div>
+                <app-block  [ngStyle]="{'display':loading ? 'none' : 'block' }" [albumObs] = "albumSubject" (loadingEvent)="loading"></app-block>
+            </div>
+            <div class="p-lg-3 p-md-2 p-offset-1">
+                <app-followartist [followObs] = "followSubject"  (refreshEvent)="initializeRelatedArtists()"></app-followartist>
+            </div>
+            <!-- <div class="p-col-12">
+                <div class="maingrid" > 
+                    <div style="width: 100vh;">
+                        <p-progressSpinner *ngIf="loading"></p-progressSpinner> 
+                    </div>
+                    <app-block  [ngStyle]="{'display':loading ? 'none' : 'block' }" [albumObs] = "albumSubject" (loadingEvent)="loading"></app-block>
+                </div> 
+                <div class="followgrid" >
+                    <app-followartist [followObs] = "followSubject"  (refreshEvent)="initializeRelatedArtists()"></app-followartist>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+ 

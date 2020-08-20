@@ -1,0 +1,19 @@
+
+ 
+	<div class="p-grid p-justify-center" >
+		<ng-container *ngFor="let A of albums">
+			<ng-container *ngIf="filterDate(A.release_date) && filterArtists(A.artists)">
+				<div class="p-col-12 p-md-6 p-lg-4 block"  >  
+								<p style="font-weight: bolder;"> {{A.name}}</p>
+								        <a href="{{A.external_urls.spotify}}" target="_blank"><img  src="{{A.images[1].url}}" max-width="300px" max-height="300px"/></a>
+								        <p> Released {{calcDaysAgo(A.release_date)}}</p> 
+								        <p>
+								            <span style="font-weight: bolder;"><span style="text-transform:capitalize;">{{A.album_type}}</span> by:</span>
+								            <span *ngFor="let names of A.artists;index as i">
+								                {{names.name}}<span *ngIf="i < A.artists.length-1">, </span>
+								            </span>
+								        </p>   
+				    </div>
+				</ng-container>
+		</ng-container>
+	</div>  
